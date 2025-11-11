@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chahana Ghanshani – DevOps / System Engineer Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      /* Pastel Fresh theme */
+      --bg1: #fff3ef; /* pastel peach */
+      --bg2: #ffeaf4; /* blush pink */
+      --card: #ffffff; /* white cards */
+      --text: #2b1a16; /* deep brown (not black) */
+      --muted: #7a5b55; /* soft cocoa-rose */
+      --accent1: #e39aa5; /* pastel rose (not orange) */
+      --accent2: #d49b7b; /* soft apricot (not orange) */
+      --accent3: #e7c7a8; /* light sand gold */
+      --chip: #ffe7da; /* peach milk */
+      --shadow: 0 10px 30px rgba(180,120,100,.14);
+      --ring: 0 0 0 3px rgba(231, 199, 168, .45);
+    }
+    [data-theme="sunset"]{
+      /* Pastel Dawn theme (alt) */
+      --bg1: #fff6fb; /* pale pink */
+      --bg2: #fff0e6; /* light apricot */
+      --card: #ffffff;
+      --text: #2d1b18;
+      --muted: #805e58;
+      --accent1: #d88ea0; /* rose */
+      --accent2: #cfa987; /* sand-apricot */
+      --accent3: #efd9bf; /* cream-gold */
+      --chip: #ffeef3;
+      --shadow: 0 12px 36px rgba(200,140,120,.16);
+      --ring: 0 0 0 3px rgba(223, 193, 175, .45);
+    }
+
+    *{box-sizing:border-box}
+    html,body{
+  margin:0;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  color:var(--text);
+  position: relative;
+  overflow-x: hidden;
+  /* BOLDER, VISIBLE ART BACKGROUND (entire site) */
+  background:
+    /* pastel purple → dark beige gradient */
+    linear-gradient(135deg, #d5c2ff, #b38a5f),
+    /* stars + shining dots */
+    url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.85)"/><circle cx="80" cy="60" r="1.5" fill="rgba(255,255,255,0.85)"/><circle cx="150" cy="40" r="2" fill="rgba(255,255,255,0.85)"/><circle cx="120" cy="120" r="1.7" fill="rgba(255,255,255,0.85)"/><circle cx="60" cy="140" r="2" fill="rgba(255,255,255,0.85)"/><circle cx="30" cy="100" r="1.3" fill="rgba(255,255,255,0.85)"/><circle cx="170" cy="160" r="1.8" fill="rgba(255,255,255,0.85)"/></svg>'),
+    
+    /* big soft blobs */
+    radial-gradient(900px 600px at 12% 88%, rgba(180,130,200,0.45) 0%, transparent 60%),
+    radial-gradient(800px 500px at 88% 18%, rgba(190,150,110,0.45) 0%, transparent 55%),
+    /* artistic sweep */
+    conic-gradient(from 120deg at 20% 30%, rgba(200,160,120,0.40), transparent 70%);
+  background-repeat: no-repeat, repeat, no-repeat, no-repeat, no-repeat;
+  background-size: cover, auto, cover, cover, cover;
+  background-attachment: fixed, fixed, fixed, fixed, fixed;
+}
+/* Artistic layered shapes (non-interactive) */
+body::before, body::after{
+  content:""; position: fixed; inset: -20% -10% -10% -10%; pointer-events:none; z-index:-1;
+  filter: blur(60px); opacity:.18;
+}
+body::before{
+  background:
+    conic-gradient(from 120deg at 20% 30%, rgba(217,167,132,0.50), rgba(170,110,80,0.0) 60%),
+    radial-gradient(400px 400px at 75% 25%, rgba(191,131,100,0.35), transparent 60%);
+  -webkit-mask: radial-gradient(65% 55% at 30% 30%, #000 60%, transparent 62%);
+          mask: radial-gradient(65% 55% at 30% 30%, #000 60%, transparent 62%);
+}
+body::after{
+  background:
+    conic-gradient(from -40deg at 80% 70%, rgba(203,145,112,0.45), rgba(170,110,80,0.0) 60%),
+    radial-gradient(500px 500px at 20% 80%, rgba(180,120,90,0.30), transparent 60%);
+  -webkit-mask: radial-gradient(60% 50% at 70% 70%, #000 60%, transparent 62%);
+          mask: radial-gradient(60% 50% at 70% 70%, #000 60%, transparent 62%);
+}
+
+.container{max-width:1080px;margin:0 auto;padding:28px;}
+    header{
+      position: sticky; top:0; z-index: 50; backdrop-filter: blur(6px);
+      background: linear-gradient(180deg, rgba(255,255,255,.72), rgba(255,255,255,.35));
+      border-bottom: 1px solid rgba(0,0,0,.06);
+    }
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 28px;}
+    .brand{display:flex;align-items:center;gap:14px;font-weight:800;letter-spacing:.3px}
+    .brand .logo{width:42px;height:42px;border-radius:12px;background:linear-gradient(135deg,var(--accent3),var(--accent1));box-shadow:var(--shadow)}
+    .brand .name{font-family:"Playfair Display", serif;font-size:22px}
+    .nav a{color:var(--muted);text-decoration:none;font-weight:600}
+    .nav a:hover{color:var(--accent1)}
+    .nav .right{display:flex;gap:14px;align-items:center}
+    .pill{padding:8px 14px;border-radius:999px;background:var(--chip);color:var(--muted);font-weight:600;font-size:12px}
+
+    .hero{display:grid;grid-template-columns:1fr;gap:26px;align-items:center;padding:32px 0 12px}
+.hero::after{content:"";display:block;height:4px;border-radius:999px;background:linear-gradient(90deg,var(--accent3),var(--accent1),var(--accent2));opacity:.22;margin-top:16px}
+    .title{font-family:"Playfair Display", serif;font-size:48px;line-height:1.05;margin:0 0 10px}
+    .subtitle{font-size:16px;color:var(--muted);margin:0 0 22px}
+    .cta{display:flex;gap:12px;flex-wrap:wrap}
+.cta .btn{text-decoration:none;}
+    .btn{appearance:none;border:none;border-radius:14px;padding:12px 16px;font-weight:700;cursor:pointer;font-family:"Playfair Display", serif;display:inline-flex;align-items:center;justify-content:center;line-height:1;min-height:44px}
+    .btn.primary{background:linear-gradient(135deg,var(--accent1), var(--accent2));color:#fff;box-shadow:var(--shadow)}
+    .btn.ghost{background:transparent;border:1px solid var(--accent3);color:var(--accent2)}
+
+    
+
+    section{margin:42px 0}
+    .section-title{font-family:"Playfair Display", serif;font-size:28px;margin:0 0 18px}
+    .grid{display:grid;gap:18px}
+    .two{grid-template-columns:1fr 1fr}
+    .three{grid-template-columns:repeat(3,1fr)}
+    @media (max-width:900px){.hero{grid-template-columns:1fr}.two,.three{grid-template-columns:1fr}}
+
+    .card{position:relative;background:
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120"><defs><pattern id="dot" width="24" height="24" patternUnits="userSpaceOnUse"><circle cx="6" cy="6" r="3" fill="rgba(255,200,220,0.45)"/></pattern></defs><rect width="100%" height="100%" fill="url(#dot)"/></svg>') padding-box,
+        /* inner pastel gradient */
+        radial-gradient(circle at 50% 30%, rgba(255,220,245,0.65), rgba(255,240,250,0.35)) padding-box,
+        linear-gradient(135deg,var(--accent1),var(--accent3)) border-box;
+      border:2px solid transparent;border-radius:18px;padding:18px 18px;
+      box-shadow:0 6px 18px rgba(0,0,0,.08),0 12px 32px rgba(0,0,0,.06);
+      transition:transform .25s ease, box-shadow .25s ease, filter .25s ease;
+      backdrop-filter:blur(12px);}
+.card:hover{transform:translateY(-4px) scale(1.02);box-shadow:0 10px 24px rgba(0,0,0,.10),0 20px 48px rgba(0,0,0,.08)}
+/* Icon in headers */
+.card h3{margin:.2rem 0 .6rem;font-size:18px;display:flex;align-items:center;gap:8px}
+.card h3 .ico{font-size:18px;line-height:1}
+/* Theme-reactive borders */
+[data-theme="sunset"] .card{background:linear-gradient(var(--card), var(--card)) padding-box,linear-gradient(135deg,var(--accent2),var(--accent1)) border-box}
+    .card h3{margin:.2rem 0 .6rem;font-size:18px}
+    .meta{font-size:12px;color:var(--muted);font-weight:600}
+    .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+    .tag{padding:6px 10px;border-radius:999px;background:var(--chip);color:var(--muted);font-weight:600;font-size:12px}
+
+    .list{display:grid;gap:12px}
+    .list li{border-radius:14px;padding:12px 14px;list-style:none;border:1px solid rgba(0,0,0,.06);color:var(--text);background:linear-gradient(135deg, rgba(255,245,250,0.75), rgba(255,235,245,0.6));box-shadow:0 4px 12px rgba(0,0,0,.05);display:flex;gap:8px;align-items:flex-start;}
+.list li::before{content:"✦";color:var(--accent1);font-size:16px;line-height:1;margin-right:6px;}
+    .list li strong{display:block;font-weight:700;color:var(--accent1);}
+
+    footer{margin-top:48px;padding:20px 0 48px;color:var(--muted);font-size:14px}
+    .contact{display:grid;gap:12px}
+
+    /* Focus states */
+a:focus, button:focus { outline: none; box-shadow: var(--ring); }
+
+/* Section anchor shortcuts */
+.quickbar{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 0}
+.quickbar a{font-size:12px}
+
+/* Dropdown for Resume */
+.dropdown{position:relative;display:inline-block}
+.dropdown .btn{display:inline-flex;align-items:center;gap:8px;font-family:"Playfair Display", serif;padding:12px 16px;font-weight:700;font-size:18px;}
+
+.dropdown .menu{position:absolute;top:46px;left:0;min-width:220px;background:var(--card);border:1px solid rgba(0,0,0,.08);box-shadow:var(--shadow);border-radius:14px;padding:8px;display:none;z-index:1000}
+.dropdown .menu::before{content:"";position:absolute;top:-8px;left:18px;width:12px;height:12px;background:var(--card);border-left:1px solid rgba(0,0,0,.08);border-top:1px solid rgba(0,0,0,.08);transform:rotate(45deg)}
+.dropdown .menu a{display:block;padding:10px 12px;border-radius:10px;text-decoration:none;color:var(--text);font-weight:700}
+.dropdown .menu a:hover{background:var(--chip)}
+.dropdown.open .menu{display:block}
+@media (max-width:520px){.dropdown .menu{left:auto;right:0;min-width:200px}}
+
+/* Decorative page-wide background enhancements */
+body::before, body::after{content:"";position:fixed;inset:-15% -10% -10% -10%;pointer-events:none;z-index:-1;filter:blur(60px);}
+body::before{opacity:.22;background:
+  conic-gradient(from 160deg at 20% 25%, rgba(205,150,112,.45), rgba(0,0,0,0) 65%),
+  radial-gradient(420px 380px at 78% 22%, rgba(191,131,100,.35), transparent 60%),
+  radial-gradient(360px 360px at 28% 72%, rgba(170,110,80,.28), transparent 62%);
+}
+body::after{opacity:.16;background:
+  conic-gradient(from -40deg at 78% 70%, rgba(203,145,112,.45), rgba(0,0,0,0) 65%),
+  radial-gradient(520px 480px at 18% 82%, rgba(180,120,90,.28), transparent 60%),
+  repeating-linear-gradient(45deg, rgba(255,245,230,.20) 0 14px, transparent 14px 26px);
+}
+  @keyframes twinkle{0%,100%{opacity:.4}50%{opacity:1}}
+@keyframes twinkle{0%,100%{opacity:.5}50%{opacity:1}}
+@keyframes floatY{0%{transform:translateY(0)}50%{transform:translateY(-6px)}100%{transform:translateY(0)}}
+.randstar{position:fixed;pointer-events:none;z-index:0;width:3px;height:3px;border-radius:50%;box-shadow:0 0 6px rgba(255,255,255,.8);animation:twinkle 3.5s infinite ease-in-out, floatY 10s ease-in-out infinite}
+header, main{position:relative; z-index:1}
+</style>
+</head>
+<body>
+  <header>
+    <nav class="nav">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div class="name">Chahana Ghanshani</div>
+      </div>
+      <div class="right">
+        <span class="pill">DevOps / System Engineer</span>
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#awards">Awards</a>
+        <a href="#skills">Skills</a>
+        <a href="#certs">Certifications</a>
+        <a href="#education">Education</a>
+        <a href="#contact">Contact</a>
+        <button class="btn ghost" id="themeToggle" aria-label="Toggle warm theme">Switch Theme</button>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container">
+    <!-- HERO -->
+    <section class="hero">
+      <div>
+        <h1 class="title">Building reliable systems with a human touch.</h1>
+        <p class="subtitle">Aspiring DevOps / System Engineer with a foundation in customer-centric problem solving, a BCom in Computers, and a DevOps certification. I enjoy bridging people and technology, crafting clear processes, and iterating toward measurable reliability.</p>
+        <div class="cta">
+          <a class="btn primary" href="#contact">Get in touch</a>
+          <div class="dropdown">
+            <button class="btn primary" id="resumeBtn" aria-expanded="false" aria-controls="resumeMenu">Resume</button>
+            <div class="menu" id="resumeMenu" role="menu" aria-labelledby="resumeBtn">
+              <a role="menuitem" href="Chahana-Ghanshani-Resume-Improved.pdf" target="_blank" download>📄 PDF (Recommended)</a>
+              <a role="menuitem" href="Chahana-Ghanshani-Resume.docx" target="_blank" download>📝 Word (.docx)</a>
+            </div>
+          </div>
+        </div>
+        </div>
+        <div class="quickbar">
+          <a class="pill" href="#about">About Me</a>
+          <a class="pill" href="#experience">Experience</a>
+          <a class="pill" href="#projects">Projects</a>
+          <a class="pill" href="#awards">Awards</a>
+          <a class="pill" href="#skills">Skills</a>
+          <a class="pill" href="#certs">Certificates</a>
+          <a class="pill" href="#education">Education</a>
+          <a class="pill" href="#contact">Contact</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ORDER: about, experience, projects, awards, skills, certificates & education, contact -->
+
+    <!-- ABOUT -->
+    <section id="about">
+      <h2 class="section-title">About Me</h2>
+      <div class="card">
+        <p style="margin-top:0">I am a curious and growth-driven professional with a BCom in Computers, a DevOps certification, and hands-on experience as a Virtual Customer Support Associate at Amazon. Working directly with customers has strengthened my ability to listen, communicate clearly, and resolve problems with patience and empathy. This experience shaped my user-centric thinking — a skill I carry into every environment, especially when bridging people with technology.</p>
+        <p>I love exploring how systems work and how people interact with them. This curiosity inspires me to continuously learn — whether it’s technology, global opportunities, or creative digital projects. I enjoy combining structured problem-solving with storytelling, logical analysis with imagination, and technical knowledge with human understanding.</p>
+        <p style="margin-bottom:0">I approach challenges with calmness, adaptability, and attention to detail. My diverse interests — from tech to creativity — have allowed me to develop a flexible mindset that thrives in dynamic environments. I’m eager to contribute to teams where I can blend my customer understanding, technical foundation, and desire for continuous improvement, while growing into more technically aligned roles.</p>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience">
+      <h2 class="section-title">Experience</h2>
+      <div class="grid two">
+        <article class="card">
+          <h3><span class="ico" aria-hidden="true">💼</span> Amazon – Virtual Customer Service Associate</h3>
+          <div class="meta">June 10, 2024 – Present · Remote</div>
+          <ul class="list" aria-label="Key achievements">
+            <li><strong>95%+ CSAT</strong> through proactive, clear, and empathetic issue resolution across IN, UK, CA, and NA regions.</li>
+            <li>Resolved delivery escalations, missing packages, address corrections, and driver app issues; coordinated with internal teams for logistics, payments, and vehicle-related concerns.</li>
+            <li>Logged and tracked cases using CRM/support tools, ensuring timely escalations and thorough follow-through.</li>
+            <li>Multitasked accurately across multiple inquiries while adhering to policies and maintaining quality metrics.</li>
+          </ul>
+          <div class="tags">
+            <span class="tag">Customer Obsession</span>
+            <span class="tag">Cross-Functional</span>
+            <span class="tag">CRM & Case Mgmt</span>
+            <span class="tag">Problem Solving</span>
+          </div>
+        </article>
+        <article class="card">
+          <h3><span class="ico" aria-hidden="true">📚</span> Tutoring – Independent</h3>
+          <div class="meta">April 2022 – June 2024</div>
+          <ul class="list">
+            <li>Customized instruction for 30+ students; drove ~20–25% test score improvements and higher student satisfaction.</li>
+            <li>Led skills assessments and iterative learning plans; improved outcomes over 3 months.</li>
+            <li>Strengthened critical thinking and problem-solving through guided practice.</li>
+          </ul>
+          <div class="tags">
+            <span class="tag">Mentoring</span>
+            <span class="tag">Curriculum Design</span>
+            <span class="tag">Communication</span>
+          </div>
+        </article>
+        <article class="card">
+          <h3><span class="ico" aria-hidden="true">🏭</span> Royes Industrial Limited – Industrial Intern</h3>
+          <div class="meta">July 11, 2022 – Aug 12, 2022</div>
+          <ul class="list">
+            <li>Analyzed financial statements and trends; supported risk assessment and decision-making.</li>
+            <li>Collaborated with cross-functional teams to gather data and share insights.</li>
+            <li>Practiced ratio analysis and basic financial modeling to evaluate options.</li>
+          </ul>
+          <div class="tags">
+            
+            
+            <span class="tag">Collaboration</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects">
+      <h2 class="section-title">Projects</h2>
+      <div class="grid two">
+        <article class="card">
+          <h3><span class="ico" aria-hidden="true">📊</span> Financial Statement Analysis – Royes Industrial Pvt Ltd</h3>
+          <div class="meta">University Project · 2022</div>
+          <p>Analyzed the financial performance of Royes Industrial Pvt Ltd by studying balance sheets, income statements, and cash flow reports. Conducted ratio analysis, identified trends, and provided insights to support risk evaluation and decision‑making.</p>
+          <div class="tags">
+            <span class="tag">University Project</span>
+            <span class="tag">Analysis</span>
+            <span class="tag">Finance</span>
+          </div>
+        </article>
+          
+          
+        </article>
+        <article class="card">
+          <h3><span class="ico" aria-hidden="true">🧩</span> Service Quality Metrics Tracking (Self-initiated)</h3>
+          <div class="meta">2024 – Ongoing</div>
+          <p>Personal framework to capture weekly support patterns, frequent issue categories, and follow-up actions—aimed at connecting customer signals to process improvements. (Planned to evolve into a dashboard.)</p>
+          <div class="tags">
+            <span class="tag">Process</span>
+            <span class="tag">Quality</span>
+            <span class="tag">Continuous Improvement</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- AWARDS -->
+    <section id="awards">
+      <h2 class="section-title">Awards</h2>
+      <div class="grid two">
+        <article class="card">
+          <h3><span class="ico" aria-hidden="true">🏆</span> Key Metrics Champion</h3>
+          <div class="meta">Amazon VCS · 2025</div>
+          <p>Recognized for consistently achieving and maintaining the company’s key performance metrics in customer service quality and efficiency.</p>
+        </article>
+        <article class="card">
+          <h3><span class="ico" aria-hidden="true">⭐</span> Customer Experience Excellence</h3>
+          <div class="meta">Amazon VCS · 2024</div>
+          <p>Awarded for high-impact contributions to customer satisfaction and operational reliability across marketplaces.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills">
+      <h2 class="section-title">Skills</h2>
+      <div class="grid three">
+        <div class="card">
+          <h3><span class="ico" aria-hidden="true">🤝</span> People & Process</h3>
+          <ul class="list">
+            <li>Communication, mentoring, relationship building</li>
+            <li>Problem solving & conflict resolution</li>
+            <li>Time management & multitasking</li>
+            <li>Account & client management</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3><span class="ico" aria-hidden="true">🧰</span> Tools & Data</h3>
+          <ul class="list">
+            <li>CRM & data management (Amazon tools)</li>
+            <li>Excel & Google Sheets – analysis/reporting</li>
+            <li>Multi-marketplace support (IN, UK, CA, NA)</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3><span class="ico" aria-hidden="true">⚙️</span> Foundations for DevOps</h3>
+          <ul class="list">
+            <li>DevOps certification</li>
+            <li>User-centric incident triage mindset</li>
+            <li>Continuous improvement & documentation</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- CERTIFICATES & EDUCATION -->
+    <section id="certs">
+      <h2 class="section-title">Certificates</h2>
+      <div class="grid two">
+        <div class="card">
+          <h3><span class="ico" aria-hidden="true">🛠️</span> Technical</h3>
+          <ul class="list">
+            <li>DevOps Certification</li>
+            <li>MS Excel</li>
+            <li>Tally</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3><span class="ico" aria-hidden="true">🎓</span> Professional</h3>
+          <ul class="list">
+            <li>Effective Communication – Great Learning</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="education">
+      <h2 class="section-title">Education</h2>
+      <div class="grid two">
+        <article class="card">
+          <h3><span class="ico" aria-hidden="true">🎓</span> BCom (Computers)</h3>
+          <div class="meta">Siva Sivani Degree College · 2023</div>
+        </article>
+        <article class="card">
+          <h3><span class="ico" aria-hidden="true">🏫</span> Class XII</h3>
+          <div class="meta">St. Francis Inter Women's College · 2020</div>
+        </article>
+        <article class="card">
+          <h3><span class="ico" aria-hidden="true">🏫</span> Class X</h3>
+          <div class="meta">St. Ann's High School · 2018</div>
+        </article>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <h2 class="section-title">Contact</h2>
+      <div class="card contact">
+        <div class="grid two">
+          <div>
+            <p><strong>Email:</strong> <a href="mailto:chahanaghanshani093@gmail.com">chahanaghanshani093@gmail.com</a></p>
+            <p><strong>Phone:</strong> <a href="tel:+916305540699">+91 6305540699</a></p>
+            <p><strong>Location:</strong> India</p>
+          </div>
+          <div>
+            <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/chahana-ghanshani/" target="_blank" rel="noopener">linkedin.com/in/chahana-ghanshani</a></p>
+            <p><strong>Instagram:</strong> <a href="https://instagram.com/vibe_player" target="_blank" rel="noopener">@vibe_player</a></p>
+          </div>
+        </div>
+        <p style="margin:0"><em>Available for DevOps / System Engineer roles.</em></p>
+      </div>
+    </section>
+
+    <footer>
+      <div>© <span id="yr"></span> Chahana Ghanshani </div>
+    </footer>
+  </main>
+
+  <script>
+    // Theme toggle (between two warm themes; never dark/black)
+    const btn = document.getElementById('themeToggle');
+    btn.addEventListener('click',()=>{
+      const s = document.documentElement.getAttribute('data-theme');
+      document.documentElement.setAttribute('data-theme', s === 'sunset' ? 'sunrise' : 'sunset');
+    });
+    document.getElementById('yr').textContent = new Date().getFullYear();
+
+    // Resume dropdown toggle
+    const resumeBtn = document.getElementById('resumeBtn');
+    const resumeMenu = document.getElementById('resumeMenu');
+    const dropdown = resumeBtn?.closest('.dropdown');
+    function closeMenu(){ dropdown?.classList.remove('open'); resumeBtn?.setAttribute('aria-expanded','false'); }
+    resumeBtn?.addEventListener('click', (e)=>{
+      e.preventDefault();
+      const isOpen = dropdown.classList.toggle('open');
+      resumeBtn.setAttribute('aria-expanded', String(isOpen));
+    });
+    document.addEventListener('click', (e)=>{
+      if(!dropdown) return; if(!dropdown.contains(e.target)) closeMenu();
+    });
+
+    // Generate random stars across the whole site
+    (function(){
+      const colors=["rgba(255,255,255,.95)","rgba(236,213,255,.95)","rgba(255,220,235,.95)","rgba(255,246,210,.95)"];
+      const count = 220; // adjust density here
+      for(let i=0;i<count;i++){
+        const s=document.createElement('span');
+        s.className='randstar';
+        const size = Math.random()*2.5 + 1.2; // 1.2px – 3.7px
+        s.style.width = size+"px";
+        s.style.height = size+"px";
+        s.style.left = Math.random()*100 + "vw";
+        s.style.top = Math.random()*100 + "vh";
+        s.style.background = colors[Math.floor(Math.random()*colors.length)];
+        s.style.animationDuration = (3+Math.random()*4) + "s, " + (8+Math.random()*10) + "s";
+        s.style.animationDelay = (Math.random()*3) + "s, " + (Math.random()*5) + "s";
+        document.body.appendChild(s);
+      }
+    })();
+
+    // Optional: warn if resume files are missing locally
+    const resumeLinks = resumeMenu?.querySelectorAll('a');
+    resumeLinks?.forEach(a => {
+      a.addEventListener('click', ()=> closeMenu());
+    });
+  </script>
+</body>
+</html>
