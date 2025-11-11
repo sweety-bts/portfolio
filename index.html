@@ -113,6 +113,22 @@ body::after{
     .two{grid-template-columns:1fr 1fr}
     .three{grid-template-columns:repeat(3,1fr)}
     @media (max-width:900px){.hero{grid-template-columns:1fr}.two,.three{grid-template-columns:1fr}}
+   @media (max-width:700px){
+  .nav .right {
+    flex-wrap: wrap;
+    row-gap: 6px;
+    column-gap: 10px;
+  }
+
+  .nav a {
+    font-size: 12px;
+  }
+
+  .pill {
+    font-size: 11px;
+    padding: 6px 10px;
+  }
+}
 
     .card{position:relative;background:
         url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120"><defs><pattern id="dot" width="24" height="24" patternUnits="userSpaceOnUse"><circle cx="6" cy="6" r="3" fill="rgba(255,200,220,0.45)"/></pattern></defs><rect width="100%" height="100%" fill="url(#dot)"/></svg>') padding-box,
@@ -485,6 +501,7 @@ header, main{position:relative; z-index:1}
   </script>
 </body>
 </html>
+
 
 
 
